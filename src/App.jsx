@@ -4,13 +4,19 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import HomePage from './Pages/HomePage'
+import Header from './Components/Header'
+import CreateBikes from './Pages/createBikes'
+import EditBikes from './Pages/EditBikes'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <HomePage />
+      <Header />
+      {/* <HomePage /> */}
+      {/* <CreateBikes /> */}
+      <EditBikes />
     </>
   )
 }
