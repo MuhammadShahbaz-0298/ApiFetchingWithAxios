@@ -7,6 +7,7 @@ import HomePage from './Pages/HomePage'
 import Header from './Components/Header'
 import CreateBikes from './Pages/createBikes'
 import EditBikes from './Pages/EditBikes'
+import { Route, Routes } from 'react-router-dom'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,9 +15,10 @@ function App() {
   return (
     <>
       <Header />
-      {/* <HomePage /> */}
-      {/* <CreateBikes /> */}
-      <EditBikes />
+      <Routes>
+        <Route path='/' element={<HomePage/>}></Route>
+        <Route path='/create' element={<CreateBikes/>}></Route>
+      </Routes>
     </>
   )
 }

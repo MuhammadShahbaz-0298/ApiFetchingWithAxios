@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -11,14 +12,14 @@ const Header = () => {
                     className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
                 >
                     <div className="flex lg:flex-1">
-                        <a href="#" className="-m-1.5 p-1.5">
+                       <Link to={'/'}>
                             <span className="sr-only">Your Company</span>
                             <img
                                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                 alt=""
                                 className="h-8 w-auto"
                             />
-                        </a>
+                        </Link>
                     </div>
                     <div className="flex lg:hidden">
                         <button
@@ -47,25 +48,7 @@ const Header = () => {
                     </div>
                     <el-popover-group className="hidden lg:flex lg:gap-x-12">
                         <div className="relative">
-                            <button
-                                popovertarget="desktop-menu-product"
-                                className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900"
-                            >
-                                Product
-                                <svg
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    data-slot="icon"
-                                    aria-hidden="true"
-                                    className="size-5 flex-none text-gray-400"
-                                >
-                                    <path
-                                        d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                                        clipRule="evenodd"
-                                        fillRule="evenodd"
-                                    />
-                                </svg>
-                            </button>
+                         
                             <el-popover
                                 id="desktop-menu-product"
                                 anchor="bottom"
@@ -261,9 +244,9 @@ const Header = () => {
                                 </div>
                             </el-popover>
                         </div>
-                        <a href="#" className="text-sm/6 font-semibold text-gray-900">
-                            Features
-                        </a>
+                        <Link to={'/create'} className="text-sm/6 font-semibold text-gray-900">
+                            Create
+                        </Link>
                         <a href="#" className="text-sm/6 font-semibold text-gray-900">
                             Marketplace
                         </a>
