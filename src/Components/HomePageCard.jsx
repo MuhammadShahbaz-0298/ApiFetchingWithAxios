@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const HomePageCard = ({ bike }) => {
   return (
@@ -39,12 +40,13 @@ const HomePageCard = ({ bike }) => {
     
     {/* Action Buttons */}
     <div className="flex gap-2">
-      <button
+      <Link
+        to={`/detail/${bike.id}`}
         type="button"
         className="flex-1 text-center bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium py-2 rounded-lg transition-colors border border-slate-200"
       >
         Details
-      </button>
+      </Link>
       <button
         type="button"
         className="flex-1 text-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-2 rounded-lg transition-colors"

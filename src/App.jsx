@@ -8,6 +8,7 @@ import Header from './Components/Header'
 import CreateBikes from './Pages/createBikes'
 import EditBikes from './Pages/EditBikes'
 import { Route, Routes } from 'react-router-dom'
+import DetailsPage from './Pages/DetailsPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage/>}></Route>
         <Route path='/create' element={<CreateBikes/>}></Route>
+        <Route path='/edit/:id' element={<EditBikes/>}></Route>
+        <Route path='/detail/:id' element={<DetailsPage/>}></Route>
       </Routes>
     </>
   )
