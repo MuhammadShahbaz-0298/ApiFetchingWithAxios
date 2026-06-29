@@ -1,36 +1,32 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const CreateBikes = () => {
-  const [companyName, setCompanyName] = useState('');
-  const [bikeName, setBikeName] = useState('');
-  const [model, setModel] = useState('');
-  const [engineCapacity, setEngineCapacity] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState('');
+const CreateBikes = ({
+  companyName,
+  bikeName,
+  model,
+  engineCapacity,
+  price,
+  image,
+  setCompanyName,
+  setBikeName,
+  setModel,
+  setEngineCapacity,
+  setPrice,
+  setImage,
+}) => {
 
-  const PostData = (e) => {
-    e.preventDefault();
+  const Navigate = useNavigate();
 
-    const data = {
-      companyname: companyName,
-      name: bikeName,
-      model: model,
-      cc: engineCapacity,
-      price: price,
-      image: image
-    }
-    try {
-      const response = axios.post("https://6a34c8948248ee962fa5a2a1.mockapi.io/api/v1/bikes", data)
-      console.log("Data Sent Successfully")
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleOnSubmit = (e) => {
+    PostData(e)
+    Navigate('/')
   }
 
   return (
     <>
-      <form onSubmit={(e) => PostData(e)} className="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-default-medium font-sans">
+      <form onSubmit={(e) => handleOnSubmit(e)} className="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-default-medium font-sans">
         {/* Form Header */}
         <div className="mb-6">
           <h3 className="text-xl font-bold text-heading">Add New Bike</h3>

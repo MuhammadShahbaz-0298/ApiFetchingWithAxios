@@ -1,63 +1,42 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const EditBikes = () => {
-  const [companyName, setCompanyName] = useState('');
-  const [bikeName, setBikeName] = useState('');
-  const [model, setModel] = useState('');
-  const [engineCapacity, setEngineCapacity] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [image, setImage] = useState('');
-  const [loading, setLoading] = useState();
+const EditBikes = ({
+  companyName,
+  bikeName,
+  model,
+  engineCapacity,
+  price,
+  image,
+  loading,
+  setCompanyName,
+  setBikeName,
+  setModel,
+  setEngineCapacity,
+  setPrice,
+  setImage,
+  setLoading,
+  fetchApiData,
+  PostData
+}) => {
 
-  const param = useParams();
-
-  const id = param.id
-
-  const fetchApiData = async () => {
-    setLoading(true)
-    const response = await axios(`https://6a34c8948248ee962fa5a2a1.mockapi.io/api/v1/bikes/${id}`);
-    console.log(response.data)
-    const data = response.data
-    setCompanyName(data.companyname)
-    setBikeName(data.name)
-    setModel(data.model)
-    setEngineCapacity(data.cc)
-    setPrice(data.price)
-    setImage(data.image)
-    setLoading(false)
-  }
+  const { id } = useParams();
+  const Navigate = useNavigate();
 
   useEffect(() => {
-    fetchApiData()
+    fetchApiData(id)
   }, [])
 
 
-
-
-  const PostData = (e) => {
-    e.preventDefault();
-
-    const data = {
-      companyname: companyName,
-      name: bikeName,
-      model: model,
-      cc: engineCapacity,
-      price: price,
-      image: image
-    }
-    try {
-      const response = axios.put(`https://6a34c8948248ee962fa5a2a1.mockapi.io/api/v1/bikes/${id}`, data)
-      console.log("Data Sent Successfully")
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleOnSubmit = (e) => {
+    PostData(e, id)
+    Navigate(`/detail/${id}`)
   }
 
   return (
     <>
-      <form onSubmit={(e) => PostData(e)} className="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-default-medium font-sans">
+      <form onSubmit={(e) => handleOnSubmit(e)} className="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-default-medium font-sans">
         {/* Form Header */}
         <div className="mb-6">
           <h3 className="text-xl font-bold text-heading">Edit Bike</h3>

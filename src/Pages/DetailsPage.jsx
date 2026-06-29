@@ -4,33 +4,25 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import BikeDetailSkeleton from '../Components/BikeDetailSkeleton';
 
-const DetailsPage = () => {
+const DetailsPage = ({
+    loading,
+    bike,
+    setBike,
+    setLoading,
+    fetchApiData
+}) => {
 
-    const param = useParams();
-    const [loading, setLoading] = useState();
-    const [bike, setBike] = useState();
-
-    const id = param.id
-
-    const fetchApiData = async () => {
-        setLoading(true)
-        const response = await axios(`https://6a34c8948248ee962fa5a2a1.mockapi.io/api/v1/bikes/${id}`);
-        console.log(response.data)
-        const data = response.data
-        console.log(data)
-        setBike(data)
-        setLoading(false)
-    }
+    const { id } = useParams();
 
     useEffect(() => {
-        fetchApiData()
+        fetchApiData(id)
     }, [])
 
     return (
         <>
-            {loading 
-            ? <BikeDetailSkeleton />
-            : <Details_Ui bike={bike} />
+            {loading
+                ? <BikeDetailSkeleton />
+                : <Details_Ui bike={bike} />
             }
         </>
     )
